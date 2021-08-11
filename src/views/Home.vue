@@ -3,7 +3,7 @@
     :data="data1"
     show-checkbox
     check-strictly
-    @on-select-change="handleSelectChange"
+    @on-check-change="handleCheckChange"
   ></Tree>
 </template>
 <script>
@@ -19,6 +19,7 @@ export default {
             {
               title: "parent 1-1",
               expand: true,
+              checked: true,
               children: [
                 {
                   title: "leaf 1-1-1",
@@ -46,11 +47,13 @@ export default {
     };
   },
   methods: {
-    handleSelectChange(data) {
+    handleCheckChange(data) {
       console.log(
         "🚀 ~ file: Home.vue ~ line 45 ~ handleSelectChange ~ data",
         data
       );
+      this.data1[0].disableCheckbox = true;
+      this.data1 = [...this.data1];
     },
   },
 };
