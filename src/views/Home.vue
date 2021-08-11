@@ -1,5 +1,6 @@
 <template>
   <Tree
+    ref="tree"
     :data="data1"
     show-checkbox
     check-strictly
@@ -11,6 +12,7 @@ export default {
   name: "Home",
   data() {
     return {
+      checkedList: [],
       data1: [
         {
           title: "parent 1",
@@ -48,12 +50,13 @@ export default {
   },
   methods: {
     handleCheckChange(data) {
-      console.log(
-        "🚀 ~ file: Home.vue ~ line 45 ~ handleSelectChange ~ data",
-        data
-      );
-      this.data1[0].disableCheckbox = true;
-      this.data1 = [...this.data1];
+      this.$nextTick(() => {
+        this.data1[0].disableCheckbox = true;
+        console.log(
+          "🚀 ~ file: Home.vue ~ line 59 ~ this.$nextTick ~ this.data1",
+          this.data1
+        );
+      });
     },
   },
 };
